@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="/static/favicon-9940dcf9a846f2d938765451828df01b06ea8dd1fc2693983c1093d49d8f91da.ico" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    {%if title %}
+    <title>ipNX Dashboard - {{ title }}</title>
+    {% else %}
+    <title>ipNX Dashboard</title>
+    {% endif %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <meta name="description" content="ipNX DCU Dashboard">
+    <meta name="msapplication-tap-highlight" content="no">
+    <!--
+    =========================================================
+    * ArchitectUI HTML Theme Dashboard - v1.0.0
+    =========================================================
+    * Product Page: https://dashboardpack.com
+    * Copyright 2019 DashboardPack (https://dashboardpack.com)
+    * Licensed under MIT (https://github.com/DashboardPack/architectui-html-theme-free/blob/master/LICENSE)
+    =========================================================
+    * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+    -->
+   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='main.css')}}">
+    <style media="screen">
+        .custom-button{
+      color: black;
+      font-weight: bold;
+      background-color: white;
+      border: none;
+      transition: ease-in-out .2s;
+    }
+    .custom-button:hover{
+      box-shadow: 2px 2px 2px darkslategrey;
+    }
+    .custom-card{
+      box-shadow: 3px 3px 3px darkgray;
+    }
+    .glow{
+      -webkit-animation: glow 1s ease-in-out infinite alternate;
+      -moz-animation: glow 1s ease-in-out infinite alternate;
+      animation: glow 1s ease-in-out infinite alternate;
+    }
+    @-webkit-keyframes glow {
+      from {
+        color: white;
+      }
+      to {
+        color: red;
+      }
+    }
+    .card-glow:hover{
+      -webkit-animation: card-glow 1s ease-in-out infinite alternate;
+      -moz-animation: card-glow 1s ease-in-out infinite alternate;
+      animation: card-glow 1s ease-in-out infinite alternate;
+    }
+    @-webkit-keyframes card-glow {
+      from {
+        box-shadow: 0 0 1px #465765, 0 0 2px #465765, 0 0 3px #465765, 0 0 4px #465765;
+      }
+      to {
+        box-shadow: 0 0 2px #465765, 0 0 3px #465765, 0 0 4px #465765, 0 0 5px #465765;
+      }
+    }
+    .register-center{
+      margin: 0 auto;
+      position: relative;
+      top: -50px;
+    }
+    @media (max-width: 992px) {
+      .register-center{
+        position: relative;
+        top: -30px;
+      }
+    }
+    .app-header__logo > .logo-src {
+        height: 23px;
+        width: 97px;
+        background: url(/static/logo.png);
+    }
+
+  </style>
+</head>
+
+<body>
+    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+        <div class="app-header header-shadow">
+            <div class="app-header__logo">
+                <div class="logo-src"></div>
+                <div class="header__pane ml-auto">
+                    <div>
+                        <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="app-header__mobile-menu">
+                <div>
+                    <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="app-header__menu">
+                <span>
+                    <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                        <span class="btn-icon-wrapper">
+                            <i class="fa fa-ellipsis-v fa-w-6"></i>
+                        </span>
+                    </button>
+                </span>
+            </div>
+            <div class="app-header__content">
+                <div class="app-header-left">
+                    <div class="search-wrapper">
+                        <div class="input-holder">
+                            <input type="text" class="search-input" placeholder="Type to search">
+                            <button class="search-icon"><span></span></button>
+                        </div>
+                        <button class="close"></button>
+                    </div>
+                </div>
+                <div class="app-header-right">
+                    <div class="header-btn-lg pr-0">
+                        <div class="widget-content p-0">
+                            <div class="widget-content-wrapper">
+                                <div class="widget-content-left">
+                                    <div class="btn-group">
+                                        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                                            <img width="42" class="rounded-circle" src="{{ image_file }}" alt="">
+                                            <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                        </a>
+                                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                                            <button type="button" tabindex="0" class="dropdown-item">User Account</button>
+                                            {% if current_user.is_authenticated: %}
+                                            <a href="{{ url_for('users.logout') }}""><button type="button" tabindex="0" class="dropdown-item">Logout</button></a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="widget-content-left  ml-3 header-user-info">
+                                    <div class="widget-heading">
+                                        {{ current_user.lastName }}&nbsp;&nbsp;{{ current_user.firstName }}
+                                    </div>
+                                    <div class="widget-subheading">
+                                        {{ current_user.about }} - {{ current_user.email }}
+                                    </div>
+                                </div>
+                                <div class="widget-content-right header-user-info ml-3">
+                                    <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
+                                        <i class="fa text-white fa-calendar pr-1 pl-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include 'themes.html' %}
+        <div class="app-main">
+            {% include 'detailedSidebar.html' %}
+            <div class="app-main__outer">
+                <div class="app-main__inner">
+                    <div class="app-page-title">
+                        <div class="page-title-wrapper custom-card">
+                            <div class="page-title-heading">
+                                <div class="page-title-icon">
+                                    <i class="pe-7s-network icon-gradient bg-mean-fruit">
+                                    </i>
+                                </div>
+                                <div>Breakdown of Data Consumption Dashboard
+                                    <div class="page-title-subheading">This is the platform that gives detailed analysis of data usage.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-xl-3">
+                            <div class="card mb-3 widget-content bg-midnight-bloom custom-card">
+                                <div class="widget-content-wrapper text-white">
+                                    <div class="widget-content-left">
+                                        <div class="widget-heading">Total bundle</div>
+                                        <div class="widget-subheading">Monthly bases</div>
+                                    </div>
+                                    <div class="widget-content-right">
+                                        <div class="widget-numbers text-white glow"><span>200GB</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <div class="card mb-3 widget-content bg-arielle-smile custom-card">
+                                <div class="widget-content-wrapper text-white">
+                                    <div class="widget-content-left">
+                                        <div class="widget-heading">Client's usage</div>
+                                        <div class="widget-subheading">Overall usage</div>
+                                    </div>
+                                    <div class="widget-content-right">
+                                        <div class="widget-numbers text-white glow"><span>150GB</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <div class="card mb-3 widget-content bg-grow-early custom-card">
+                                <div class="widget-content-wrapper text-white">
+                                    <div class="widget-content-left">
+                                        <div class="widget-heading">Bundle Balance</div>
+                                        <div class="widget-subheading">Overall balance</div>
+                                    </div>
+                                    <div class="widget-content-right">
+                                        <div class="widget-numbers text-white glow"><span>50GB</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <div class="card mb-3 widget-content custom-card" style="background: #d92550">
+                                <div class="widget-content-wrapper text-white">
+                                    <div class="widget-content-left">
+                                        <div class="widget-heading">Percentage</div>
+                                        <div class="widget-subheading">Balance percentege</div>
+                                    </div>
+                                    <div class="widget-content-right">
+                                        <div class="widget-numbers text-warning glow"><span>25%</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Device connected table-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="main-card mb-3 card card-glow">
+                                <div class="card-header">Connected Devices
+                                    <div class="btn-actions-pane-right">
+                                        <div role="group" class="btn-group-sm btn-group">
+                                            <button class="active btn btn-focus" style="position: relative; left: -20rem;">Date: <span id="date"></span></button>
+                                            <script type="text/javascript">
+                                            const getDate = new Date();
+                                            const date = getDate.toDateString();
+                                            document.getElementById('date').innerHTML = date;
+                                            </script>
+                                            <button class="active btn btn-focus">This Month</button>
+                                            <div class="dropup btn-group">
+                                                <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="dropdown-toggle btn btn-focus">All Months</button>
+                                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
+                                                    <button type="button" tabindex="0" class="dropdown-item">January</button>
+                                                    <button type="button" tabindex="0" class="dropdown-item">February</button>
+                                                    <button type="button" tabindex="0" class="dropdown-item">March</button>
+                                                    <button type="button" tabindex="0" class="dropdown-item">April</button>
+                                                    <button type="button" tabindex="0" class="dropdown-item">May</button>
+                                                    <button type="button" tabindex="0" class="dropdown-item">June</button>
+                                                    <button type="button" tabindex="0" class="dropdown-item">July</button>
+                                                    <button type="button" tabindex="0" class="dropdown-item">August</button>
+                                                    <button type="button" tabindex="0" class="dropdown-item">September</button>
+                                                    <button type="button" tabindex="0" class="dropdown-item">October</button>
+                                                    <button type="button" tabindex="0" class="dropdown-item">November</button>
+                                                    <button type="button" tabindex="0" class="dropdown-item">December</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">S/N</th>
+                                                <th class="text-center">Device Name</th>
+                                                <th class="text-center">Data consumed</th>
+                                                <th class="text-center">Status</th>
+                                                <th class="text-center">Analysis</th>
+                                                <th class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-center text-muted">1</td>
+                                                <td>
+                                                    <div class="widget-content p-0">
+                                                        <div class="widget-content-wrapper">
+                                                            <div class="widget-content-left mr-3">
+                                                                <div class="widget-content-left">
+                                                                    <img width="40" height="40" class="rounded-circle" src="/static/apple.jpg" alt="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="widget-content-left flex2">
+                                                                <div class="widget-heading">iPhone</div>
+                                                                <div class="widget-subheading opacity-7">Major client</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">60GB</td>
+                                                <td class="text-center">
+                                                    <div class="badge badge-success">Active</div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm custom-button" data-toggle="modal" data-target="#exampleModal">Details</button>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button type="button" id="PopoverCustomT-1" class="btn btn-danger btn-sm custom-button">Deactivate</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center text-muted">2</td>
+                                                <td>
+                                                    <div class="widget-content p-0">
+                                                        <div class="widget-content-wrapper">
+                                                            <div class="widget-content-left mr-3">
+                                                                <div class="widget-content-left">
+                                                                    <img width="40" class="rounded-circle" src="/static/laptop.jpg" alt="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="widget-content-left flex2">
+                                                                <div class="widget-heading">Laptop</div>
+                                                                <div class="widget-subheading opacity-7">Major client</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">40GB</td>
+                                                <td class="text-center">
+                                                    <div class="badge badge-success">Active</div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm custom-button">Details</button>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button type="button" id="PopoverCustomT-2" class="btn btn-danger btn-sm custom-button">Deactivate</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center text-muted">3</td>
+                                                <td>
+                                                    <div class="widget-content p-0">
+                                                        <div class="widget-content-wrapper">
+                                                            <div class="widget-content-left mr-3">
+                                                                <div class="widget-content-left">
+                                                                    <img width="40" class="rounded-circle" src="/static/infinix.jpg" alt="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="widget-content-left flex2">
+                                                                <div class="widget-heading">Infinix</div>
+                                                                <div class="widget-subheading opacity-7">Semi-major client</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">30GB</td>
+                                                <td class="text-center">
+                                                    <div class="badge badge-warning">Semiactive</div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button type="button" id="PopoverCustomT-3" class="btn btn-primary btn-sm custom-button">Details</button>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button type="button" id="PopoverCustomT-1" class="btn btn-danger btn-sm custom-button">Deactivate</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center text-muted">4</td>
+                                                <td>
+                                                    <div class="widget-content p-0">
+                                                        <div class="widget-content-wrapper">
+                                                            <div class="widget-content-left mr-3">
+                                                                <div class="widget-content-left">
+                                                                    <img width="40" class="rounded-circle" src="/static/tecno.jpg" alt=""></div>
+                                                            </div>
+                                                            <div class="widget-content-left flex2">
+                                                                <div class="widget-heading">Tecno</div>
+                                                                <div class="widget-subheading opacity-7">Minor user</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">20GB</td>
+                                                <td class="text-center">
+                                                    <div class="badge badge-danger">Inactive</div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button type="button" id="PopoverCustomT-4" class="btn btn-primary btn-sm custom-button">Details</button>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button type="button" id="PopoverCustomT-1" class="btn btn-danger btn-sm custom-button">Deactivate</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% include 'footer.html' %}
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="{{url_for('static', filename='main.js')}}"></script>
+    <script type="text/javascript">
+    $(function() {
+        setNavigation();
+    });
+
+    function setNavigation() {
+        var path = window.location.pathname;
+        path = path.replace(/\/$/, "");
+        path = decodeURIComponent(path);
+
+        $("ul.vertical-nav-menu a").each(function() {
+            var href = $(this).attr('href');
+            if (path.substring(0, href.length) === href) {
+                $(this).closest('li').addClass('mm-active');
+            }
+        });
+    }
+    </script>
+</body>
+
+</html>
