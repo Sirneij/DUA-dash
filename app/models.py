@@ -28,7 +28,7 @@ class User(UserMixin, db.Model):
         self.role     = None
 
     def __repr__(self):
-        return f"User('{self.self.firstName}','{self.self.lastName}', '{self.username}', '{self.image_file}')"
+        return "{}".format(self.id)
 
     def save(self):
 

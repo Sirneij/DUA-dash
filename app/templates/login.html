@@ -10,7 +10,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="/static/favicon-9940dcf9a846f2d938765451828df01b06ea8dd1fc2693983c1093d49d8f91da.ico" />
+	<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='assets/images/favicon-9940dcf9a846f2d938765451828df01b06ea8dd1fc2693983c1093d49d8f91da.ico') }}" />
 	<!--===============================================================================================-->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<!--===============================================================================================-->
@@ -135,19 +135,19 @@
 							</ol>
 							<div class="carousel-inner">
 								<div class="carousel-item active">
-									<img src="/static/logo.png" class="w-100" alt="...">
+									<img src="{{ url_for('static', filename='assets/images/logo.png')}}" class="w-100" alt="...">
 									<div class="carousel-caption d-none d-md-block text-black">
 										<h5>Customer Friendly</h5>
 										<p>Customer satisfaction is our priority...</p>
 									</div>
 								</div>
 								<div class="carousel-item">
-									<img src="/static/banner8-c1c285d91fa78b287865816bb0392dc42f81800cbe7767711d73fab45667e73d.png" class="w-100" alt="...">
+									<img src="{{ url_for('static', filename='assets/images/banner8-c1c285d91fa78b287865816bb0392dc42f81800cbe7767711d73fab45667e73d.png')}}" class="w-100" alt="...">
 									<div class="carousel-caption d-none d-md-block text-black">
 									</div>
 								</div>
 								<div class="carousel-item">
-									<img src="/static/cssp_banner-b4f52a81a2970392340f62f4b6f3fe7cd51200db35edc74da99ce6dedf012e6f.png" class="w-100" alt="...">
+									<img src="{{ url_for('static', filename='assets/images/cssp_banner-b4f52a81a2970392340f62f4b6f3fe7cd51200db35edc74da99ce6dedf012e6f.png')}}" class="w-100" alt="...">
 									<div class="carousel-caption d-none d-md-block text-black">
 										<h5>Customer dash</h5>
 										<p>Login to view your sessions.</p>

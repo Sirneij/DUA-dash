@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <link rel="shortcut icon" type="image/x-icon" href="/static/favicon-9940dcf9a846f2d938765451828df01b06ea8dd1fc2693983c1093d49d8f91da.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='assets/images/favicon-9940dcf9a846f2d938765451828df01b06ea8dd1fc2693983c1093d49d8f91da.ico') }}" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     {%if title %}
-    <title>ipNX Dashboard - Error (Page not found)</title>
+    <title>ipNX Dashboard - {{ title }}</title>
     {% else %}
     <title>ipNX Dashboard</title>
     {% endif %}
@@ -89,12 +89,6 @@
         top: -30px;
       }
     }
-
-    .app-header__logo>.logo-src {
-      height: 23px;
-      width: 97px;
-      background: url(/static/ipNX-Mini-Logo-f4477edd9e75d4a024fafbce7c733cda6dcaed9d977769c639eda4b7d8c9cca0.png);
-    }
   </style>
 </head>
 
@@ -102,7 +96,11 @@
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
-                <div class="logo-src"></div>
+                <div class="logo-src">
+                    <a href="{{ url_for('main.home') }}">
+                        <img src="{{ url_for('static', filename='assets/images/ipNX-Mini-Logo-f4477edd9e75d4a024fafbce7c733cda6dcaed9d977769c639eda4b7d8c9cca0.png') }}" style="height:32; width: 100;">
+                    </a>
+                </div>
                 <div class="header__pane ml-auto">
                     <div>
                         <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -214,7 +212,7 @@
                                                 <!-- slide background -->
                                                 <div class="ls-l">
                                                 </div>
-                                                <img class="ls-bg" src="/static/kaz1-33a489787fda0ccab70e0818d2490609e0a64517540481b06645f5590335a0e2.png" alt="Kaz1 33a489787fda0ccab70e0818d2490609e0a64517540481b06645f5590335a0e2" />
+                                                <img class="ls-bg" src="{{ url_for('static', filename='assets/images/kaz1-33a489787fda0ccab70e0818d2490609e0a64517540481b06645f5590335a0e2.png') }}" alt="Kaz1 33a489787fda0ccab70e0818d2490609e0a64517540481b06645f5590335a0e2" />
                                                 <!-- Left Text -->
                                                 <ul>
                                                     <li class="ls-l title text-normal" style="list-style-type:none; padding:0px; width:600px; top:10%; left:75%;" data-ls="setxin:0;offsetyin:250;durationin:1000;delayin:0;offsetxout:0;offsetyout:-8;easingout:easeInOutQuart;scalexout:1.2;scaleyout:1.2;">
@@ -242,7 +240,7 @@
                                                 <!-- slide background -->
                                                 <div class="ls-l">
                                                 </div>
-                                                <img class="ls-bg" src="/static/kaz4-82ef7ce879ce910ced871610e553c617c47e48b313c05bbab56aa81f00ad3f21.png" alt="Kaz4 82ef7ce879ce910ced871610e553c617c47e48b313c05bbab56aa81f00ad3f21" />
+                                                <img class="ls-bg" src="{{ url_for('static', filename='assets/images/kaz4-82ef7ce879ce910ced871610e553c617c47e48b313c05bbab56aa81f00ad3f21.png') }}" alt="Kaz4 82ef7ce879ce910ced871610e553c617c47e48b313c05bbab56aa81f00ad3f21" />
                                                 <ul>
                                                     <li class="ls-l title text-normal" style="list-style-type:none; padding:0px; color:white; width:540px; top:20%; left:35%;" data-ls="setxin:0;offsetyin:250;durationin:1000;delayin:0;offsetxout:0;offsetyout:-8;easingout:easeInOutQuart;scalexout:1.2;scaleyout:1.2;">
                                                         Learning, Gaming, Entertainment <br>or anything else...
@@ -261,7 +259,7 @@
                                                 <!-- slide background -->
                                                 <div class="ls-l">
                                                 </div>
-                                                <img class="ls-bg" src="/static/kaz3-7a03ac523b881141d7b939860c29790358925669312c2105038f93d167659121.png" alt="Kaz3 7a03ac523b881141d7b939860c29790358925669312c2105038f93d167659121" />
+                                                <img class="ls-bg" src="{{ url_for('static', filename='assets/images/kaz3-7a03ac523b881141d7b939860c29790358925669312c2105038f93d167659121.png') }}" alt="Kaz3 7a03ac523b881141d7b939860c29790358925669312c2105038f93d167659121" />
                                                 <span class="ls-l title text-normal" style="width:600px; top:20%; left:31.5%;" data-ls="setxin:0;offsetyin:250;durationin:1000;delayin:0;offsetxout:0;offsetyout:-8;easingout:easeInOutQuart;scalexout:1.2;scaleyout:1.2;">
                                                     <span style="color:white;">Your business deserves the <br>best connectivity</span>
                                                 </span>

@@ -97,9 +97,7 @@
         <div class="app-header header-shadow">
             <div class="app-header__logo">
                 <div class="logo-src">
-                    <a href="{{ url_for('main.home') }}">
-                        <img src="{{ url_for('static', filename='assets/images/ipNX-Mini-Logo-f4477edd9e75d4a024fafbce7c733cda6dcaed9d977769c639eda4b7d8c9cca0.png') }}" style="height:32; width: 100;">
-                    </a>
+                    <img src="{{ url_for('static', filename='assets/images/ipNX-Mini-Logo-f4477edd9e75d4a024fafbce7c733cda6dcaed9d977769c639eda4b7d8c9cca0.png') }}" style="height:32; width: 100;">
                 </div>
                 <div class="header__pane ml-auto">
                     <div>
@@ -195,7 +193,9 @@
                                     </div>
                                     <div>Error Notification
                                         <div class="page-title-subheading">
-                                            <p>The URL you were looking for does not seem to exist.If you have typed the link manually, make sure you've spelled the link right.</p>
+                                            {% for message in get_flashed_messages() %}
+                                            {{ message }}
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
